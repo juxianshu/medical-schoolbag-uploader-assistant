@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大医病理科规培病例上传模板转换工具</title>
+		<link rel="icon" href="
+			data:image/jpeg;base64,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
+		">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            padding: 5px;
+        }
+				select {
+				    cursor: pointer;        /* 鼠标放上去显示手型，提示可点击 */
+				}
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>大医病理科规培病例上传模板转换工具</h1>
+        
+        <div class="form-group">
+            <label for="sourceFile">选择源数据文件 (.xls/.xlsx):</label>
+            <input type="file" id="sourceFile" accept=".xls,.xlsx">
+        </div>
+
+        <div class="form-group">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="secondCategory">二级分类:</label>
+            <input type="text" id="secondCategory" value="门诊诊治">
+        </div>
+
+        <div class="form-group">
+            <label for="visitType">就诊类型:</label>
+            <input type="text" id="visitType" value="首诊">
+        </div>
+				
+				<div class="form-group">
+				    <label for="primaryDiagnosis">主要诊断:</label>
+				    <!-- 将 input 换成 select，id 保持不变以便 JS 获取 -->
+				    <select id="primaryDiagnosis">
+				        <option value="">-- 请选择诊断 --</option>
+				        <option value="外阴感染性病变及鳞状上皮病变，宫颈炎、宫颈息肉、宫颈鳞状上皮内病变、宫颈癌、子宫内膜增生性病变、内膜息肉、内膜癌、内膜间质肿瘤">外阴感染性病变及鳞状上皮病变，宫颈炎、宫颈息肉、宫颈鳞状上皮内病变、宫颈癌、子宫内膜增生性病变、内膜息肉、内膜癌、内膜间质肿瘤</option>
+				        <option value="Baret食管、食管癌；慢性胃炎、胃溃疡、常见胃息肉、胃癌前病变、胃癌">Baret食管、食管癌；慢性胃炎、胃溃疡、常见胃息肉、胃癌前病变、胃癌</option>
+				        <option value="肾常见肿瘤">肾常见肿瘤</option>
+				        <option value="软组织常见良性及恶性肿瘤">软组织常见良性及恶性肿瘤</option>
+				        <option value="反应性增生、常见炎性疾病">反应性增生、常见炎性疾病</option>
+				        <option value="常见甲状腺炎性疾病、结节性甲状腺肿、滤泡腺瘤、乳头状癌、滤泡癌、甲状旁腺增生、肾上腺皮髓质增生及肿瘤、垂体腺瘤、胰岛素瘤">常见甲状腺炎性疾病、结节性甲状腺肿、滤泡腺瘤、乳头状癌、滤泡癌、甲状旁腺增生、肾上腺皮髓质增生及肿瘤、垂体腺瘤、胰岛素瘤</option>
+				        <option value="皮肤病基本病理改变">皮肤病基本病理改变</option>
+				        <option value="喉常见炎性疾病及肿瘤">喉常见炎性疾病及肿瘤</option>
+				        <option value="常见神经上皮肿瘤">常见神经上皮肿瘤</option>
+								<option value="心肌病">心肌病</option>
+				    </select>
+				</div>
+
+        <div class="form-group">
+            <label for="isRescue">是否抢救:</label>
+            <input type="text" id="isRescue" value="否">
+        </div>
+
+        <button id="processBtn">处理并下载结果</button>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+				// 页面加载时：读取本地存储的数据
+				window.addEventListener('DOMContentLoaded', () => {
+						const savedData = {
+								name: localStorage.getItem('excel_tool_name'),
+								secondCategory: localStorage.getItem('excel_tool_secondCategory'),
+								visitType: localStorage.getItem('excel_tool_visitType'),
+								primaryDiagnosis: localStorage.getItem('excel_tool_primaryDiagnosis'),
+								isRescue: localStorage.getItem('excel_tool_isRescue')
+						};
+
+						// 将数据回填到输入框
+						if (savedData.name) document.getElementById('name').value = savedData.name;
+						if (savedData.secondCategory) document.getElementById('secondCategory').value = savedData.secondCategory;
+						if (savedData.visitType) document.getElementById('visitType').value = savedData.visitType;
+						if (savedData.primaryDiagnosis) document.getElementById('primaryDiagnosis').value = savedData.primaryDiagnosis;
+						if (savedData.isRescue) document.getElementById('isRescue').value = savedData.isRescue;
+			        });
+							
+				// 点击按钮事件
+        document.getElementById('processBtn').addEventListener('click', async function() {
+            const sourceFileInput = document.getElementById('sourceFile');
+            const name = document.getElementById('name').value;
+            const secondCategory = document.getElementById('secondCategory').value;
+            const visitType = document.getElementById('visitType').value;
+            const primaryDiagnosis = document.getElementById('primaryDiagnosis').value;
+            const isRescue = document.getElementById('isRescue').value;
+
+            const statusDiv = document.getElementById('status');
+            
+            if (!sourceFileInput.files.length) {
+                showStatus('请选择源数据文件！', 'error');
+                return;
+            }
+						
+						// 检查其他必填输入项是否为空
+						if (!name || !secondCategory || !visitType || !primaryDiagnosis || !isRescue) {
+								showStatus('请填写所有必填项！', 'error');
+								return;
+						}
+						
+						// 处理成功前保存到本地存储
+						localStorage.setItem('excel_tool_name', name);
+						localStorage.setItem('excel_tool_secondCategory', secondCategory);
+						localStorage.setItem('excel_tool_visitType', visitType);
+						localStorage.setItem('excel_tool_primaryDiagnosis', primaryDiagnosis);
+						localStorage.setItem('excel_tool_isRescue', isRescue);
+
+            try {
+                showStatus('正在处理文件...', 'info');
+                
+                const file = sourceFileInput.files[0];
+                const data = await readFileAsArrayBuffer(file);
+                const workbook = XLSX.read(data, {type: 'array'});
+                
+                // 获取第一个工作表
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                
+                // 将工作表转换为 JSON
+                let jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+                
+                // 假设第一行为标题，过滤掉最后一行统计信息
+                const headers = jsonData[0];
+                const dataRows = jsonData.slice(1, -1); // 去掉第一行标题和最后一行统计
+                
+                // 查找所需列的索引
+                const medicalRecordNoIndex = headers.indexOf('住院号');
+                const patientNameIndex = headers.indexOf('姓名');
+                const visitDateIndex = headers.indexOf('登记时间'); // 假设日期列为"登记时间"
+                
+                if (medicalRecordNoIndex === -1 || patientNameIndex === -1 || visitDateIndex === -1) {
+                    throw new Error('源文件缺少必要的列：住院号、姓名、登记时间');
+                }
+								
+								const ALL_COLUMNS = [
+								    "姓名*", "手机号", "转计划开始时间*", "二级分类*", "医师类型",
+								    "病历号*", "病人姓名*", "是否对应HIS系统患者", "床位号", "是否对应HIS系统病例",
+								    "就诊日期*", "就诊类型*", "主要诊断*", "次要诊断", "内容",
+								    "全程管理", "入院日期", "出院日期", "书写大病历", "是否肛肠专科住院志",
+								    "参与角色", "是否抢救*", "抢救内容", "转归情况", "望闻问切",
+								    "辅助检查", "处方", "医嘱"
+								];
+								
+								// --- 创建一个索引映射表 ---
+								const COLUMN_INDEX = {};
+								ALL_COLUMNS.forEach((colName, index) => {
+								    COLUMN_INDEX[colName] = index;
+								});
+                
+                // 创建新数据
+                const newRows = [];
+                dataRows.forEach(row => {
+                    const medicalRecordNo = row[medicalRecordNoIndex];
+                    const patientName = row[patientNameIndex];
+                    let visitDate = formatExcelDate(row[visitDateIndex]);
+                    
+                    // 计算计划开始日期 (月份的第一天)
+                    const planStartDate = getFirstDayOfMonth(visitDate);
+                    
+                    // 创建新行数据
+										const newRow = new Array(ALL_COLUMNS.length).fill("");
+										
+                    newRow[COLUMN_INDEX["姓名*"]] = name;
+                    newRow[COLUMN_INDEX["转计划开始时间*"]] = planStartDate;
+										newRow[COLUMN_INDEX["二级分类*"]] = secondCategory;
+										newRow[COLUMN_INDEX["病历号*"]] = medicalRecordNo;
+										newRow[COLUMN_INDEX["病人姓名*"]] = patientName;
+										newRow[COLUMN_INDEX["就诊日期*"]] = visitDate;
+										newRow[COLUMN_INDEX["就诊类型*"]] = visitType;
+										newRow[COLUMN_INDEX["主要诊断*"]] = primaryDiagnosis;
+										newRow[COLUMN_INDEX["是否抢救*"]] = isRescue;
+                    
+                    newRows.push(newRow);
+                });
+                
+                // 创建结果工作簿
+                const resultWorkbook = XLSX.utils.book_new();
+                
+                // 准备最终数据：标题行 + 列名行 + 数据行
+                const titleRow = ["登记手册病种数据模板（版本：6.4.220913）"];
+                // for (let i = 1; i < 9; i++) titleRow.push(""); // 补齐到9列
+                
+                const columnHeaders = ALL_COLUMNS;
+                
+                const finalData = [titleRow, columnHeaders, ...newRows];
+                
+                const resultWorksheet = XLSX.utils.aoa_to_sheet(finalData, {header: 1});
+                XLSX.utils.book_append_sheet(resultWorkbook, resultWorksheet, "Sheet1");
+                
+                // 生成并下载文件
+                XLSX.writeFile(resultWorkbook, "completed_disease_form.xls");
+                
+                showStatus(`✅ 处理完成！共处理 ${newRows.length} 条记录。文件已下载。`, 'success');
+                
+            } catch (error) {
+                console.error('处理文件时出错:', error);
+                showStatus(`❌ 处理失败: ${error.message}`, 'error');
+            }
+        });
+
+        function readFileAsArrayBuffer(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result);
+                reader.onerror = e => reject(new Error('读取文件失败'));
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        function getFirstDayOfMonth(dateStr) {
+            const parts = dateStr.split('/');
+            if (parts.length >= 2) {
+                return `${parts[0]}/${parts[1]}/01`;
+            }
+            return dateStr;
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // 5秒后隐藏状态信息
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+				
+				/**
+				 * 将 Excel 的序列号（数字）或日期对象转换为 "YYYY/MM/DD" 字符串
+				 * @param {number|Date|string} excelDate - 可能是数字、Date对象或字符串
+				 * @returns {string} 格式化后的日期，例如 "2026/04/19"
+				 */
+				function formatExcelDate(excelDate) {
+				    if (!excelDate) return "";
+				
+				    // 情况 A: 如果是数字 (例如 46120.37...)
+				    if (typeof excelDate === 'number') {
+				        // Excel 日期基准是 1899-12-30 (注意不是 1900-01-01，这是为了兼容 Lotus 1-2-3 的 bug)
+				        // 86400000 是一天的毫秒数
+				        const dateObj = new Date((excelDate - 25569) * 86400 * 1000); 
+				        
+				        const y = dateObj.getFullYear();
+				        const m = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+				        const d = dateObj.getDate().toString().padStart(2, '0');
+				        return `${y}/${m}/${d}`;
+				    }
+				
+				    // 情况 B: 如果已经是 Date 对象
+				    if (excelDate instanceof Date) {
+				        const y = excelDate.getFullYear();
+				        const m = (excelDate.getMonth() + 1).toString().padStart(2, '0');
+				        const d = excelDate.getDate().toString().padStart(2, '0');
+				        return `${y}/${m}/${d}`;
+				    }
+				
+				    // 情况 C: 如果已经是字符串 (防止误判)
+				    // 简单处理：把横杠换成斜杠，去掉时间部分
+				    if (typeof excelDate === 'string') {
+				        return excelDate.replace(/-/g, '/').split(' ')[0];
+				    }
+				
+				    return String(excelDate);
+				}
+				
+				
+    </script>
+</body>
+</html>
+
+
