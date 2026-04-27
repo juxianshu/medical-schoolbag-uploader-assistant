@@ -271,9 +271,11 @@
                 const resultWorksheet = XLSX.utils.aoa_to_sheet(finalData, {header: 1});
                 XLSX.utils.book_append_sheet(resultWorkbook, resultWorksheet, "Sheet1");
                 
-                // 生成并下载文件
-                XLSX.writeFile(resultWorkbook, "completed_disease_form.xls");
-                
+                // 组成文件名 生成并下载文件
+								const diagnosisPrefix = primaryDiagnosis ? primaryDiagnosis.substring(0, 5) : "未知诊断";
+								const dynamicFileName = `${name}_${diagnosisPrefix}_批量导入.xls`;
+								XLSX.writeFile(resultWorkbook, dynamicFileName);
+								                
                 showStatus(`✅ 处理完成！共处理 ${newRows.length} 条记录。文件已下载。`, 'success');
                 
             } catch (error) {
