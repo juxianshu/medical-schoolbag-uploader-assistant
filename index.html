@@ -127,7 +127,9 @@
 
 			<div class="form-group">
 				<label for="visitType">就诊类型:</label>
-				<input type="text" id="visitType" value="首诊">
+				<select id="visitType">
+					<option value="首诊">首诊</option>
+				</select>
 			</div>
 
 			<div class="form-group">
@@ -257,10 +259,22 @@
 
 					// 创建新数据
 					const newRows = [];
+					
+					// 使用 Set 作为哈希表来存储已经出现过的病历号
+					const seenMedicalRecordNos = new Set();
+					let duplicateCount = 0; // 计数器
+					
 					dataRows.forEach(row => {
 						const medicalRecordNo = row[medicalRecordNoIndex];
 						const patientName = row[patientNameIndex];
 						let visitDate = formatExcelDate(row[visitDateIndex]);
+
+						// 如果病历号为空，或者已经在 Set 中存在，则跳过该行（只保留第一次出现的）
+						if (!medicalRecordNo || seenMedicalRecordNos.has(medicalRecordNo)) {
+							duplicateCount++; // 发现重复，计数+1
+							return; // 直接结束当前循环，不执行后面的添加操作
+						}
+						seenMedicalRecordNos.add(medicalRecordNo);
 
 						// 计算计划开始日期 (月份的第一天)
 						const planStartDate = getFirstDayOfMonth(visitDate);
@@ -302,7 +316,7 @@
 					const dynamicFileName = `${name}_${diagnosisPrefix}_批量导入.xls`;
 					XLSX.writeFile(resultWorkbook, dynamicFileName);
 
-					showStatus(`✅ 处理完成！共处理 ${newRows.length} 条记录。文件已下载。`, 'success');
+					showStatus(`✅ 处理完成！共处理 ${newRows.length} 条记录（已自动去重 ${duplicateCount} 条）。文件已下载。`, 'success');
 
 				} catch (error) {
 					console.error('处理文件时出错:', error);
