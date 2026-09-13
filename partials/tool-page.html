@@ -1,0 +1,83 @@
+<!-- ============================================================
+     tool-page.html - 转换工具页面模板（ToolPage 组件的 template）
+     由 js/components.js 的 createToolApp() 通过 fetch 加载
+     可用配置插值：config.title / config.subtitle / config.optionLabel / config.optionHint
+     ============================================================ -->
+<div class="page">
+	<div class="page-header">
+		<h1>{{ config.title }}</h1>
+		<p>{{ config.subtitle }}</p>
+	</div>
+
+	<div class="container">
+		<!-- 第一步：选择文件 -->
+		<div class="section">
+			<div class="section-title"><span class="step-no">1</span>选择源数据文件</div>
+			<div class="form-grid">
+				<div class="form-group full">
+					<label>源数据文件<span class="required">*</span></label>
+					<input type="file" ref="sourceFile" accept=".xls,.xlsx">
+					<div class="hint">需包含「住院号」「姓名」「登记时间」三列；第一行为标题，最后一行统计信息将被忽略。</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 第二步：填写基本信息 -->
+		<div class="section">
+			<div class="section-title"><span class="step-no">2</span>填写登记信息</div>
+			<div class="form-grid">
+				<div class="form-group">
+					<label>姓名<span class="required">*</span></label>
+					<input type="text" v-model="name" placeholder="规培医师姓名">
+				</div>
+
+				<div class="form-group">
+					<label>二级分类<span class="required">*</span></label>
+					<input type="text" v-model="secondCategory">
+				</div>
+
+				<div class="form-group">
+					<label>就诊类型<span class="required">*</span></label>
+					<select v-model="visitType">
+						<option value="首诊">首诊</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>是否抢救<span class="required">*</span></label>
+					<input type="text" v-model="isRescue">
+				</div>
+
+				<div class="form-group full">
+					<label>{{ config.optionLabel }}<span class="required">*</span></label>
+					<!-- 组合框：允许直接输入自定义文本；点击输入框或箭头展开完整选项列表（不按输入内容筛选） -->
+					<div class="combo">
+						<input type="text" v-model="selectedOption"
+							:placeholder="placeholderText" :disabled="optionsState === 'loading'"
+							@focus="dropdownOpen = true" @blur="closeDropdown" @keydown.esc="dropdownOpen = false">
+						<button type="button" class="combo-toggle" tabindex="-1"
+							:class="{ open: dropdownOpen }" :disabled="optionsState === 'loading'"
+							@mousedown.prevent="toggleDropdown">▾</button>
+						<ul v-show="dropdownOpen && options.length" class="combo-list">
+							<li v-for="item in options" :key="item"
+								:class="{ selected: item === selectedOption }"
+								@mousedown.prevent="pickOption(item)">{{ item }}</li>
+						</ul>
+					</div>
+					<div class="hint">{{ config.optionHint }}</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 第三步：执行 -->
+		<div class="section">
+			<div class="section-title"><span class="step-no">3</span>生成并下载</div>
+			<div class="btn-area">
+				<button @click="processFile">⚙️ 处理并下载结果</button>
+			</div>
+			<div v-if="status" class="status" :class="status.type" :style="{ display: 'block' }">{{ status.message }}</div>
+		</div>
+	</div>
+
+	<div class="footer">数据仅在本地浏览器处理，不会上传到任何服务器</div>
+</div>
