@@ -61,6 +61,10 @@ const TEMPLATES = {
 			visitDate: "操作日期*", // 操作日期使用源数据的登记时间
 			option: "技能操作*",
 			isRescue: "是否抢救*"
+		},
+		// 固定值列：所有数据行统一填入
+		constants: {
+			"主要诊断": "其他病种"
 		}
 	}
 };

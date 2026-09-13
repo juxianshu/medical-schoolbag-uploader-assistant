@@ -36,7 +36,7 @@ const AppNavbar = {
 			<div class="navbar-inner">
 				<div class="navbar-brand">
 					<span class="logo">🧬</span>
-					<span class="brand-text">大医病理科 · 规培助手</span>
+					<span class="brand-text"><span class="brand-full">大医病理科 · </span>规培助手</span>
 				</div>
 				<div class="navbar-menu">
 					<a v-for="item in navItems" :key="item.key"
@@ -59,6 +59,7 @@ const TOOL_PAGE_TEMPLATE_URL = 'partials/tool-page.html';
  *   subtitle      标题下的描述文字
  *   optionLabel   下拉框标签，如「主要诊断」/「技能操作」
  *   optionHint    下拉框下方的提示文字
+ *   defaultSecondCategory 二级分类默认值（默认 '门诊诊治'）
  *   yamlKey       YAML 中选项列表的键名（'diagnoses' / 'skills'）
  *   storagePrefix localStorage 键前缀（各页面互不冲突）
  *   template      输出模板键名（'disease' / 'skill'，见 common.js TEMPLATES）
@@ -74,7 +75,7 @@ const ToolPage = {
 		return {
 			// 表单字段
 			name: '',
-			secondCategory: '门诊诊治',
+			secondCategory: this.config.defaultSecondCategory || '门诊诊治',
 			visitType: '首诊',
 			selectedOption: '',
 			isRescue: '否',
@@ -105,27 +106,24 @@ const ToolPage = {
 		this.loadOptions();
 	},
 	methods: {
-		/* 从 localStorage 回填表单 */
+		/* 从 localStorage 回填表单（二级分类不读取历史，每次使用页面默认值） */
 		restoreForm() {
 			const prefix = this.config.storagePrefix;
 			const saved = {
 				name: localStorage.getItem(`${prefix}_name`),
-				secondCategory: localStorage.getItem(`${prefix}_secondCategory`),
 				visitType: localStorage.getItem(`${prefix}_visitType`),
 				isRescue: localStorage.getItem(`${prefix}_isRescue`)
 			};
 			if (saved.name) this.name = saved.name;
-			if (saved.secondCategory) this.secondCategory = saved.secondCategory;
 			if (saved.visitType) this.visitType = saved.visitType;
 			if (saved.isRescue) this.isRescue = saved.isRescue;
 			// 下拉选中项在选项加载完成后回填（见 loadOptions）
 		},
 
-		/* 保存表单到 localStorage */
+		/* 保存表单到 localStorage（二级分类不保存） */
 		saveForm() {
 			const prefix = this.config.storagePrefix;
 			localStorage.setItem(`${prefix}_name`, this.name);
-			localStorage.setItem(`${prefix}_secondCategory`, this.secondCategory);
 			localStorage.setItem(`${prefix}_visitType`, this.visitType);
 			localStorage.setItem(`${prefix}_primaryDiagnosis`, this.selectedOption);
 			localStorage.setItem(`${prefix}_isRescue`, this.isRescue);
@@ -293,6 +291,13 @@ const ToolPage = {
 						const colName = template.mapping[fieldKey];
 						newRow[COLUMN_INDEX[colName]] = fieldValues[fieldKey];
 					});
+
+					// 填充固定值列（如技能模板的「主要诊断」统一为"其他病种"）
+					if (template.constants) {
+						Object.keys(template.constants).forEach(colName => {
+							newRow[COLUMN_INDEX[colName]] = template.constants[colName];
+						});
+					}
 
 					newRows.push(newRow);
 				});

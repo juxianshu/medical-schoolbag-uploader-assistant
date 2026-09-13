@@ -434,7 +434,37 @@ button:disabled {
 		padding: 24px 20px;
 	}
 
-	.navbar-brand span.brand-text {
+	/* 导航栏收窄：品牌只显示「规培助手」，菜单项缩小，全部保持在一行内 */
+	.navbar-inner {
+		gap: 12px;
+		padding: 0 12px;
+		height: 56px;
+	}
+
+	.navbar-brand {
 		font-size: 15px;
+		gap: 8px;
+	}
+
+	.navbar-brand .brand-full {
+		display: none;
+	}
+
+	.navbar-brand .logo {
+		width: 30px;
+		height: 30px;
+		font-size: 16px;
+	}
+
+	.nav-item {
+		font-size: 14px;
+		padding: 6px 10px;
+		height: 36px;
+	}
+
+	.nav-item.active::after {
+		left: 10px;
+		right: 10px;
+		bottom: -6px;
 	}
 }
