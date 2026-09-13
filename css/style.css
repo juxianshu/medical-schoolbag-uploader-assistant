@@ -1,0 +1,440 @@
+/* ============================================================
+   大医病理科规培助手 - 公共样式
+   病种数据(index.html) / 技能数据(skills.html) 共用
+   ============================================================ */
+
+:root {
+	--primary: #0e7c86;
+	--primary-dark: #0a5f66;
+	--primary-light: #e6f4f5;
+	--accent: #1e9aa6;
+	--text-main: #2c3e50;
+	--text-sub: #6b7c8d;
+	--border: #dde5ea;
+	--bg: #f2f6f8;
+	--danger-bg: #fdecea;
+	--danger-text: #c0392b;
+	--success-bg: #e8f6ee;
+	--success-text: #1e8e5a;
+	--info-bg: #e8f1fb;
+	--info-text: #2b6cb0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: var(--bg);
+	color: var(--text-main);
+	min-height: 100vh;
+}
+
+/* ============ 导航栏 ============ */
+.navbar {
+	background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 60%, var(--accent) 100%);
+	box-shadow: 0 2px 12px rgba(14, 124, 134, 0.25);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.navbar-inner {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 24px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	gap: 32px;
+}
+
+.navbar-brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: #fff;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+
+.navbar-brand .logo {
+	width: 34px;
+	height: 34px;
+	background: rgba(255, 255, 255, 0.18);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 19px;
+}
+
+.navbar-menu {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	height: 100%;
+}
+
+.nav-item {
+	position: relative;
+	color: rgba(255, 255, 255, 0.82);
+	text-decoration: none;
+	font-size: 15px;
+	padding: 8px 18px;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	height: 40px;
+}
+
+.nav-item:hover {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-item.active {
+	color: #fff;
+	font-weight: bold;
+	background: rgba(255, 255, 255, 0.18);
+}
+
+.nav-item.active::after {
+	content: "";
+	position: absolute;
+	left: 18px;
+	right: 18px;
+	bottom: -10px;
+	height: 3px;
+	border-radius: 2px;
+	background: #ffd66b;
+}
+
+/* ============ 页面主体 ============ */
+.page {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 32px 24px 60px;
+}
+
+.page-header {
+	margin-bottom: 24px;
+}
+
+.page-header h1 {
+	font-size: 24px;
+	margin: 0 0 8px;
+	color: var(--text-main);
+}
+
+.page-header p {
+	margin: 0;
+	color: var(--text-sub);
+	font-size: 14px;
+}
+
+.container {
+	background-color: #fff;
+	padding: 32px 36px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(30, 60, 90, 0.08);
+	border: 1px solid #e8eef2;
+}
+
+/* 分区块 */
+.section {
+	margin-bottom: 28px;
+}
+
+.section:last-of-type {
+	margin-bottom: 8px;
+}
+
+.section-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--primary-dark);
+	margin-bottom: 16px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed var(--border);
+}
+
+.section-title .step-no {
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: var(--primary);
+	color: #fff;
+	font-size: 13px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 18px 24px;
+}
+
+.form-group {
+	margin-bottom: 0;
+}
+
+.form-group.full {
+	grid-column: 1 / -1;
+}
+
+label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: bold;
+	font-size: 14px;
+	color: var(--text-main);
+}
+
+label .required {
+	color: #e74c3c;
+	margin-left: 2px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	box-sizing: border-box;
+	font-size: 14px;
+	color: var(--text-main);
+	background-color: #fbfcfd;
+	transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+	outline: none;
+	border-color: var(--primary);
+	background-color: #fff;
+	box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.12);
+}
+
+input[type="file"] {
+	padding: 8px;
+	cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+	background: var(--primary-light);
+	color: var(--primary-dark);
+	border: 1px solid #bfe0e3;
+	border-radius: 5px;
+	padding: 6px 14px;
+	margin-right: 12px;
+	cursor: pointer;
+	font-size: 13px;
+	transition: background 0.2s;
+}
+
+input[type="file"]::file-selector-button:hover {
+	background: #d3ebee;
+}
+
+select {
+	cursor: pointer;
+}
+
+.hint {
+	font-size: 12px;
+	color: var(--text-sub);
+	margin-top: 5px;
+}
+
+/* 组合框（可输入 + 自定义下拉面板） */
+.combo {
+	position: relative;
+	display: flex;
+	align-items: stretch;
+}
+
+.combo input {
+	flex: 1;
+	padding-right: 38px; /* 给右侧三角标留出位置 */
+}
+
+/* 三角标：悬浮在输入框内部右侧，无边框无背景 */
+.combo-toggle {
+	position: absolute;
+	right: 6px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	background: transparent;
+	color: var(--text-sub);
+	border: none;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: normal;
+	letter-spacing: 0;
+	box-shadow: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.combo-toggle:hover {
+	background: var(--primary-light);
+	color: var(--primary-dark);
+	box-shadow: none;
+	transform: translateY(-50%);
+}
+
+/* 面板展开时三角标翻转朝上 */
+.combo-toggle.open {
+	color: var(--primary);
+	transform: translateY(-50%) rotate(180deg);
+}
+
+.combo-toggle:disabled {
+	background: transparent;
+	color: #c3ccd4;
+	cursor: not-allowed;
+}
+
+.combo-list {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	margin: 4px 0 0;
+	padding: 4px;
+	list-style: none;
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	box-shadow: 0 8px 24px rgba(30, 60, 90, 0.15);
+	max-height: 260px;
+	overflow-y: auto;
+	z-index: 50;
+}
+
+.combo-list li {
+	padding: 8px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1.5;
+	color: var(--text-main);
+}
+
+.combo-list li:hover {
+	background: var(--primary-light);
+}
+
+.combo-list li.selected {
+	background: var(--primary-light);
+	color: var(--primary-dark);
+	font-weight: bold;
+}
+
+/* 按钮 */
+.btn-area {
+	margin-top: 8px;
+}
+
+button {
+	background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+	color: white;
+	padding: 13px 24px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	width: 100%;
+	box-shadow: 0 4px 12px rgba(14, 124, 134, 0.3);
+	transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+}
+
+button:hover {
+	box-shadow: 0 6px 16px rgba(14, 124, 134, 0.4);
+	transform: translateY(-1px);
+}
+
+button:active {
+	transform: translateY(0);
+}
+
+button:disabled {
+	background: #ccc;
+	box-shadow: none;
+	cursor: not-allowed;
+}
+
+/* 状态提示 */
+.status {
+	margin-top: 20px;
+	padding: 14px 16px;
+	border-radius: 8px;
+	display: none;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+.success {
+	background-color: var(--success-bg);
+	color: var(--success-text);
+	border: 1px solid #bfe6d0;
+}
+
+.error {
+	background-color: var(--danger-bg);
+	color: var(--danger-text);
+	border: 1px solid #f5c6c0;
+}
+
+.info {
+	background-color: var(--info-bg);
+	color: var(--info-text);
+	border: 1px solid #c3d9f0;
+}
+
+/* 页脚 */
+.footer {
+	text-align: center;
+	color: #9aabba;
+	font-size: 12px;
+	margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+	.form-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.container {
+		padding: 24px 20px;
+	}
+
+	.navbar-brand span.brand-text {
+		font-size: 15px;
+	}
+}
